@@ -10,16 +10,31 @@
 <body>
     <header>
         <h1>News</h1>
-        <div id="searchInputContainer">
-            <label for="search-input"></label>
-            <input type="text" name="search" id="searchInput" placeholder="Search">
-            <button id="searchBtn" type="submit">Search</button>
-        </div>
+        <form id="searchFrom" action="">
+            <label for="search_input"></label>
+            <input value="" type="text" id="searchInput" placeholder="Search" maxlength="100">
+            <input type="submit"/>
+            <label for="cars"></label>
+        </form>
         <div>
             <button id="getHeadlinesBtn">Get Headlines</button>
+            <div>
+                <select id="categories">
+                  <option value=""disabled selected>Select Category</option>                   
+                  <option value="businessen">business</option>
+                  <option value="entertainment">entertainment</option>
+                  <option value="general">general</option>
+                  <option value="health">health</option>
+                  <option value="science">science</option>
+                  <option value="sports">sports</option>
+                  <option value="technology">technology</option>
+                </select>
+            </div>
         </div>
     </header>
     <div id="headlinesContainer"></div>
+    <div id="newsListContainer"></div>
+    <div id="categoriesListContainer"></div>
 
     <script src="main.js"></script>
 </body>
