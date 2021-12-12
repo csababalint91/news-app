@@ -1,42 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://kit.fontawesome.com/c555056b76.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" type="text/css" href="style.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script
+      src="https://kit.fontawesome.com/c555056b76.js"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="stylesheet" type="text/css" href="style.css" />
     <title>News</title>
-</head>
-<body>
+  </head>
+  <body onload="getValue">
     <header>
-        <h1 class="title">News</h1>
-        <form id="searchFrom" action="">
-            <label for="search_input"></label>
-            <input value="" type="text" id="searchInput" placeholder="Search" maxlength="100">
-            <button type="submit"><i class="fa fa-search"></i></button>
-            <label for="cars"></label>
-        </form>
-        <div>
-            <!-- <button onclick="getHeadlines()">Get headlines</button> -->
-            <select id="categories">
-                <option value="Select Category"disabled>Select Category</option>                   
-                <option value="business">Business</option>
-                <option value="entertainment">Entertainment</option>
-                <option value="general" selected>General</option>
-                <option value="health">Health</option>
-                <option value="science">Science</option>
-                <option value="sports">Sports</option>
-                <option value="technology">Technology</option>
-            </select>
-        </div>
+      <h1 class="title">News</h1>
+      <form id="searchFrom" action="">
+        <label for="search_input"></label>
+        <input
+          value=""
+          type="text"
+          id="searchInput"
+          placeholder="Search"
+          maxlength="100"
+        />
+        <button type="submit"><i class="fa fa-search"></i></button>
+      </form>
+      <div>
+        <!-- Get headlines button -->
+        <!-- <button onclick="getHeadlines()">Get headlines</button> -->
+        <select id="categories">
+          <option value="Select Category" disabled>Select Category</option>
+          <option value="business">Business</option>
+          <option value="entertainment">Entertainment</option>
+          <option value="general" selected>General</option>
+          <option value="health">Health</option>
+          <option value="science">Science</option>
+          <option value="sports">Sports</option>
+          <option value="technology">Technology</option>
+        </select>
+      </div>
     </header>
-    <button type="button" id="arrowTopBtn"><i class="fas fa-arrow-up"></i></button>
+    <div id="totalResult"></div>
+    <button type="button" id="arrowTopBtn">
+      <i class="fas fa-arrow-up"></i>
+    </button>
     <div class="loader-wrapper">
-        <div class="loader"></div>
+      <div class="loader"></div>
     </div>
+    
     <div id="headlinesContainer"></div>
     <div id="newsListContainer"></div>
     <script src="main.js"></script>
-</body>
+  </body>
 </html>
