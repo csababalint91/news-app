@@ -15,7 +15,7 @@ window.onload = getHeadlines = () => {
   loader.style.display = "block";
   totalResults.innerHTML = "";
 
-  let topHeadlinesUrl = `${newsAppApiBaseUrl}/getAPIResponse/topHeadlines`;
+  let topHeadlinesUrl = `${newsAppApiBaseUrl}getAPIResponse/topHeadlines`;
 
   fetch(topHeadlinesUrl)
     .then((res) => res.json())
@@ -62,7 +62,7 @@ const getValue = (e) => {
 
   let categoriesValue = e.target.value;
 
-  let categoriesUrl = `${newsAppApiBaseUrl}/getAPIResponse/category?category=${categoriesValue}`;
+  let categoriesUrl = `${newsAppApiBaseUrl}getAPIResponse/category?category=${categoriesValue}`;
   // `https://newsapi.org/v2/top-headlines?country=us&pageSize=30&category=${categoriesValue}&apiKey=${key}`
 
 
@@ -116,7 +116,7 @@ const retriveSearch = (e) => {
   e.preventDefault();
 
   let topic = searchInput.value;
-  let searchUrl = `${newsAppApiBaseUrl}/getAPIResponse/topic?topic=${topic}`;
+  let searchUrl = `${newsAppApiBaseUrl}getAPIResponse/topic?topic=${topic}`;
 
   // `https://newsapi.org/v2/everything?q=${topic}&pageSize=100&apiKey=${key}`
 
