@@ -112,7 +112,7 @@ button[type="submit"]:hover {
 
 .img-wrapper {
   width: 100%;
-  min-height: 0;
+  min-height: 30%;
   background-color: white;
   display: flex;
 }
@@ -234,6 +234,8 @@ button[type="submit"]:hover {
 }
 
 .loader {
+  margin-left: auto;
+  margin-right: auto;
   margin-top: 80px;
   display: none;
   border: 10px solid #f3f3f3;
