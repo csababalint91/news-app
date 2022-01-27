@@ -11,7 +11,7 @@
     <link rel="stylesheet" type="text/css" href="style.css" />
     <title>News</title>
   </head>
-  <body onload="getValue">
+  <body onload="getCategory">
     <header>
       <h1 class="title">News</h1>
       <form id="searchFrom" action="">
@@ -40,14 +40,14 @@
         </select>
       </div>
     </header>
-    <div id="totalResult"></div>
+    <!-- <div id="totalResult"></div> -->
     <button type="button" id="arrowTopBtn">
       <i class="fas fa-arrow-up"></i>
     </button>
     <div class="loader-wrapper">
       <div class="loader"></div>
     </div>
-    
+
     <div id="headlinesContainer"></div>
     <div id="newsListContainer"></div>
     <script src="main.js"></script>

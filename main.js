@@ -8,7 +8,8 @@ const articleWrapper = document.querySelectorAll(".article-wrapper");
 const loader = document.querySelector(".loader");
 const totalResults = document.getElementById('totalResult');
 
-window.onload = getHeadlines = () => {
+// window.onload = 
+getHeadlines = () => {
   // Clear page
   newsListContainer.innerHTML = "";
   headlinesContainer.innerHTML = "";
@@ -20,7 +21,7 @@ window.onload = getHeadlines = () => {
   fetch(topHeadlinesUrl)
     .then((res) => res.json())
     .then((data) => {
-      totalResults.innerHTML = `Total results: ${data.totalResults}`
+      //totalResults.innerHTML = `Total results: ${data.totalResults}`
       console.log(data.totalResults)
       const headlinesContainer = document.getElementById("headlinesContainer");
       let articleCard = data.articles
@@ -54,7 +55,7 @@ window.onload = getHeadlines = () => {
 
 //  Headlines by category
 
-const getValue = (e) => {
+const getCategory = (e) => {
   // Clear page
   newsListContainer.innerHTML = "";
   headlinesContainer.innerHTML = "";
@@ -95,7 +96,7 @@ const getValue = (e) => {
 };
 
 const categories = document.getElementById("categories");
-categories.addEventListener("change", getValue);
+categories.addEventListener("change", getCategory);
 
 //
 
