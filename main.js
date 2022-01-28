@@ -6,15 +6,14 @@ const newsAppApiBaseUrl = "https://news-app-api-zeta.vercel.app/";
 
 const articleWrapper = document.querySelectorAll(".article-wrapper");
 const loader = document.querySelector(".loader");
-const totalResults = document.getElementById('totalResult');
+//const totalResults = document.getElementById('totalResult');
 
-// window.onload = 
-getHeadlines = () => {
+window.onload = getHeadlines = () => {
   // Clear page
   newsListContainer.innerHTML = "";
   headlinesContainer.innerHTML = "";
   loader.style.display = "block";
-  totalResults.innerHTML = "";
+  //totalResults.innerHTML = "";
 
   let topHeadlinesUrl = `${newsAppApiBaseUrl}getAPIResponse/topHeadlines`;
 
@@ -22,7 +21,6 @@ getHeadlines = () => {
     .then((res) => res.json())
     .then((data) => {
       //totalResults.innerHTML = `Total results: ${data.totalResults}`
-      console.log(data.totalResults)
       const headlinesContainer = document.getElementById("headlinesContainer");
       let articleCard = data.articles
         .map((article) => {
@@ -70,7 +68,7 @@ const getCategory = (e) => {
   fetch(categoriesUrl)
     .then((response) => response.json())
     .then((data) => {
-      totalResults.innerHTML = `Total results: ${data.totalResults}`
+      //totalResults.innerHTML = `Total results: ${data.totalResults}`
       let categoryCard = data.articles
         .map((article) => {
           return `
@@ -125,7 +123,7 @@ const retriveSearch = (e) => {
     .then((res) => res.json())
     .then((data) => {
       internationalNumberFormat = new Intl.NumberFormat('en-GB')
-      totalResults.innerHTML = `Total results: ${internationalNumberFormat.format(data.totalResults)}`
+      // totalResults.innerHTML = `Total results: ${internationalNumberFormat.format(data.totalResults)}`
       let searchList = data.articles
         .map((article) => {
           return `
@@ -163,6 +161,8 @@ window.addEventListener("scroll", () => {
 arrowTopBtn.addEventListener("click", () => {
   document.documentElement.scrollTop = 0;
 });
-//
 
-// Loader
+
+const clearPage = () => {
+
+}
