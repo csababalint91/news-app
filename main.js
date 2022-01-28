@@ -69,7 +69,7 @@ const getCategory = (e) => {
   fetch(categoriesUrl)
     .then((response) => response.json())
     .then((data) => {
-      //totalResults.innerHTML = `Total results: ${data.totalResults}`
+      // totalResults.innerHTML = `Total results: ${data.totalResults}`
       let categoryCard = data.articles
         .map((article) => {
           return `
