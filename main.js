@@ -6,37 +6,33 @@ const newsAppApiBaseUrl = "https://news-app-api-zeta.vercel.app/";
 
 const articleWrapper = document.querySelectorAll(".article-wrapper");
 const loader = document.querySelector(".loader");
-//const totalResults = document.getElementById('totalResult');
 
 window.onload = getHeadlines = () => {
-  // Clear page
-  newsListContainer.innerHTML = "";
-  headlinesContainer.innerHTML = "";
-  loader.style.display = "block";
-  //totalResults.innerHTML = "";
+  resetPage();
 
   let topHeadlinesUrl = `${newsAppApiBaseUrl}getAPIResponse/topHeadlines`;
 
   fetch(topHeadlinesUrl)
-    .then((res) => res.json())
-    .then((data) => {
+    .then(res => res.json())
+    .then(data => {
       //totalResults.innerHTML = `Total results: ${data.totalResults}`
       const headlinesContainer = document.getElementById("headlinesContainer");
       let articleCard = data.articles
-        .map((article) => {
-
+        .map(article => {
           return `
-      <div onclick="window.open('${article.url}', '_blank')" class="article-card">
-          <div class="img-wrapper">
+      <div onclick="window.open('${article.url
+            }', '_blank')" class="article-card">
           <img src="${article.urlToImage || "./no-image.jpeg"}" href=${article.url
             } alt="article-img" loading="lazy">
-          </div>
+          <div class="card-text-wrapper">
           <h3>${article.title}</h3>
           <p>${article.description || "--Description not available!--"}</p>
           <cite>${article.source.name}-${new Date(
               article.publishedAt
             ).getFullYear()}-${new Date(article.publishedAt).getMonth() + 1
-            }-${new Date(article.publishedAt).getDate()}</cite>
+            }-${new Date(article.publishedAt).getDate()}
+          </cite>
+          </div>
       </div>`;
         })
         .join("");
@@ -45,42 +41,38 @@ window.onload = getHeadlines = () => {
 
       headlinesContainer.innerHTML = articleCard;
     })
-    .catch((error) => {
+    .catch(error => {
       console.log(error);
     });
 };
 
-
 //  Headlines by category
-
-const getCategory = (e) => {
-  // Clear page
-  newsListContainer.innerHTML = "";
-  headlinesContainer.innerHTML = "";
-  loader.style.display = "block";
+const getCategory = e => {
+  resetPage();
 
   let categoriesValue = e.target.value;
 
   let categoriesUrl = `${newsAppApiBaseUrl}getAPIResponse/category?category=${categoriesValue}`;
-  // `https://newsapi.org/v2/top-headlines?country=us&pageSize=30&category=${categoriesValue}&apiKey=${key}`
-
 
   fetch(categoriesUrl)
-    .then((response) => response.json())
-    .then((data) => {
-      //totalResults.innerHTML = `Total results: ${data.totalResults}`
+    .then(response => response.json())
+    .then(data => {
+      console.log(data);
       let categoryCard = data.articles
-        .map((article) => {
+        .map(article => {
           return `
   <div onclick="window.open('${article.url}', '_blank')" class="article-card">
-      <div class="img-wrapper">
       <img src="${article.urlToImage || "./no-image.jpeg"
-            }"  alt="article-img" loading="lazy">
-      </div>
-      <h3>${article.title}</h3>
-      <p>${article.description}</p><cite style=>${article.source.name
-            }-${new Date(article.publishedAt).getFullYear()}-${new Date(article.publishedAt).getMonth() + 1
-            }-${new Date(article.publishedAt).getDate()}</cite>
+            }" alt="article-img" loading="lazy">
+      <div class="card-text-wrapper">
+        <h3>${article.title}</h3>
+        <p>${article.description}</p>
+        </div>
+        <cite style=>${article.source.name}-${new Date(
+              article.publishedAt
+            ).getFullYear()}-${new Date(article.publishedAt).getMonth() + 1
+            }-${new Date(article.publishedAt).getDate()}
+        </cite>
   </div>`;
         })
         .join("");
@@ -88,7 +80,7 @@ const getCategory = (e) => {
       loader.style.display = "none";
       headlinesContainer.innerHTML = categoryCard;
     })
-    .catch((error) => {
+    .catch(error => {
       console.log(error);
     });
 };
@@ -103,11 +95,8 @@ categories.addEventListener("change", getCategory);
 const searchFrom = document.getElementById("searchFrom");
 const newsListContainer = document.getElementById("newsListContainer");
 
-const retriveSearch = (e) => {
-  // Clear page
-  newsListContainer.innerHTML = "";
-  headlinesContainer.innerHTML = "";
-  loader.style.display = "block";
+const retriveSearch = e => {
+  resetPage();
 
   // Set drop down value back to disabled
   categories.value = "Select Category";
@@ -117,17 +106,16 @@ const retriveSearch = (e) => {
   let topic = searchInput.value;
   let searchUrl = `${newsAppApiBaseUrl}getAPIResponse/topic?topic=${topic}`;
 
-  // `https://newsapi.org/v2/everything?q=${topic}&pageSize=100&apiKey=${key}`
-
   fetch(searchUrl)
-    .then((res) => res.json())
-    .then((data) => {
-      internationalNumberFormat = new Intl.NumberFormat('en-GB')
-      // totalResults.innerHTML = `Total results: ${internationalNumberFormat.format(data.totalResults)}`
+    .then(res => res.json())
+    .then(data => {
+      internationalNumberFormat = new Intl.NumberFormat("en-GB");
+
       let searchList = data.articles
-        .map((article) => {
+        .map(article => {
           return `
-      <div onclick="window.open('${article.url}', '_blank')" class="search-list-item" >
+      <div onclick="window.open('${article.url
+            }', '_blank')" class="search-list-item" >
           <img src="${article.urlToImage || "./no-image.jpeg"
             }" alt="article-img" loading="lazy"><cite style=>${article.source.name
             }-${new Date(article.publishedAt).getFullYear()}-${new Date(article.publishedAt).getMonth() + 1
@@ -143,7 +131,6 @@ const retriveSearch = (e) => {
 };
 
 searchFrom.addEventListener("submit", retriveSearch);
-//
 
 // Back to the top button
 window.addEventListener("scroll", () => {
@@ -157,12 +144,14 @@ window.addEventListener("scroll", () => {
   }
 });
 
-
 arrowTopBtn.addEventListener("click", () => {
   document.documentElement.scrollTop = 0;
 });
 
+const resetPage = () => {
+  newsListContainer.innerHTML = "";
+  headlinesContainer.innerHTML = "";
+  loader.style.display = "block";
+};
 
-const clearPage = () => {
-
-}
+const pagination = () => { };
