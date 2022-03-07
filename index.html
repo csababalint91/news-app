@@ -11,7 +11,7 @@
     <link rel="stylesheet" type="text/css" href="style.css" />
     <title>News</title>
   </head>
-  <body onload="getHeadlines">
+  <body>
     <header>
       <h1 class="title">News</h1>
       <form id="searchFrom" action="">
@@ -26,8 +26,6 @@
         <button type="submit"><i class="fa fa-search"></i></button>
       </form>
       <div>
-        <!-- Get headlines button -->
-        <!-- <button onclick="getHeadlines()">Get headlines</button> -->
         <select id="categories">
           <option value="Select Category" disabled>Select Category</option>
           <option value="business">Business</option>
@@ -40,14 +38,12 @@
         </select>
       </div>
     </header>
-    <div id="totalResult"></div>
     <button type="button" id="arrowTopBtn">
       <i class="fas fa-arrow-up"></i>
     </button>
-    <div class="loader-wrapper">
-      <div class="loader"></div>
+    <div class="loader">
+      <div class="loaderBar"></div>
     </div>
-
     <div id="headlinesContainer"></div>
     <div id="newsListContainer"></div>
     <script src="main.js"></script>
