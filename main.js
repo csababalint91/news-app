@@ -26,12 +26,12 @@ window.onload = getHeadlines = () => {
           <div class="card-text-wrapper">
           <h3>${article.title}</h3>
           <p>${article.description || "--Description not available!--"}</p>
+          </div>
           <cite>${article.source.name}-${new Date(
               article.publishedAt
             ).getFullYear()}-${new Date(article.publishedAt).getMonth() + 1
             }-${new Date(article.publishedAt).getDate()}
           </cite>
-          </div>
       </div>`;
         })
         .join("");
@@ -87,8 +87,6 @@ const getCategory = e => {
 const categories = document.getElementById("categories");
 categories.addEventListener("change", getCategory);
 
-//
-
 // Get Search
 
 const searchFrom = document.getElementById("searchFrom");
@@ -131,7 +129,7 @@ const retriveSearch = e => {
 
 searchFrom.addEventListener("submit", retriveSearch);
 
-// Back to the top button
+// Back to the top button listeners
 window.addEventListener("scroll", () => {
   let scrolled;
   scrolled = window.scrollY;
@@ -153,4 +151,3 @@ const resetPage = () => {
   loader.style.display = "block";
 };
 
-const pagination = () => { };
