@@ -1,5 +1,7 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+
 module.exports = {
     entry: "./main.js",
     module: {
@@ -31,6 +33,10 @@ module.exports = {
         new HtmlWebpackPlugin({
             template: path.join(__dirname, "./index.html"),
             filename: "./index.html"
+        }),
+        new MiniCssExtractPlugin({
+            filename: "[name].css",
+            chunkFilename: "[id].css",
         }),
     ],
     mode: process.env.NODE_ENV === "production" ? "production" : "development",
