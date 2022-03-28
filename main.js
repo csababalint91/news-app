@@ -1,5 +1,6 @@
-const key = "41b766d0cd0542d1b34a4ab70409abdf";
+import './style.css';
 
+const key = "41b766d0cd0542d1b34a4ab70409abdf";
 const newsAppApiBaseUrl = "https://news-app-api-zeta.vercel.app/";
 
 // Get Headlines
@@ -7,7 +8,7 @@ const newsAppApiBaseUrl = "https://news-app-api-zeta.vercel.app/";
 const articleWrapper = document.querySelectorAll(".article-wrapper");
 const loader = document.querySelector(".loader");
 
-window.onload = getHeadlines = () => {
+window.onload = function getHeadlines() {
   resetPage();
 
   let topHeadlinesUrl = `${newsAppApiBaseUrl}getAPIResponse/topHeadlines`;
@@ -15,14 +16,20 @@ window.onload = getHeadlines = () => {
   fetch(topHeadlinesUrl)
     .then(res => res.json())
     .then(data => {
+      console.log(data)
       const headlinesContainer = document.getElementById("headlinesContainer");
       let articleCard = data.articles
         .map(article => {
           return `
       <div onclick="window.open('${article.url
             }', '_blank')" class="article-card">
-          <img src="${article.urlToImage || "./no-image.jpeg"}" href=${article.url
-            } alt="article-img" loading="lazy">
+          <img 
+            src="${article.urlToImage || "./no-image.jpeg"}"
+            href=${article.url
+            } 
+            alt="article-img" 
+            loading="lazy"
+            >
           <div class="card-text-wrapper">
           <h3>${article.title}</h3>
           <p>${article.description || "--Description not available!--"}</p>
@@ -61,8 +68,13 @@ const getCategory = e => {
         .map(article => {
           return `
   <div onclick="window.open('${article.url}', '_blank')" class="article-card">
-      <img src="${article.urlToImage || "./no-image.jpeg"
-            }" alt="article-img" loading="lazy">
+        <img 
+        src="${article.urlToImage || "./no-image.jpeg"}"
+        href=${article.url
+            } 
+        alt="article-img" 
+        loading="lazy"
+        >
       <div class="card-text-wrapper">
         <h3>${article.title}</h3>
         <p>${article.description}</p>
@@ -106,8 +118,7 @@ const retriveSearch = e => {
   fetch(searchUrl)
     .then(res => res.json())
     .then(data => {
-      internationalNumberFormat = new Intl.NumberFormat("en-GB");
-
+      let internationalNumberFormat = new Intl.NumberFormat("en-GB");
       let searchList = data.articles
         .map(article => {
           return `
@@ -150,4 +161,5 @@ const resetPage = () => {
   headlinesContainer.innerHTML = "";
   loader.style.display = "block";
 };
+
 
