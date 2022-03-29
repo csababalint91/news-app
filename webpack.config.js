@@ -34,7 +34,9 @@ module.exports = {
         new HtmlWebpackPlugin({
             template: path.join(__dirname, "./index.html"),
             filename: "./index.html",
-            removeRedundantAttributes: false, // do not remove type="text"
+            minify: {
+                removeRedundantAttributes: false, // do not remove type="text"
+            }
         }),
         new MiniCssExtractPlugin({
             filename: "[name].css",
