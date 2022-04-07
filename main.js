@@ -15,9 +15,9 @@ window.onload = function getHeadlines() {
   let topHeadlinesUrl = `${newsAppApiBaseUrl}getAPIResponse/topHeadlines`;
 
   fetch(topHeadlinesUrl)
+    //  .then(() => { throw new Error('here') })
     .then(res => res.json())
     .then(data => {
-      console.log(data)
       const headlinesContainer = document.getElementById("headlinesContainer");
       let articleCard = data.articles
         .map(article => {
@@ -33,7 +33,7 @@ window.onload = function getHeadlines() {
             >
           <div class="card-text-wrapper">
           <h3>${article.title}</h3>
-          <p>${article.description || "--Description not available!--"}</p>
+          <p>${article.description || "--Description is not available 🙁 --"}</p>
           </div>
           <cite>${article.source.name}-${new Date(
               article.publishedAt
@@ -44,12 +44,12 @@ window.onload = function getHeadlines() {
         })
         .join("");
 
-      loader.style.display = "none";
-
+      hideLoader()
       headlinesContainer.innerHTML = articleCard;
     })
     .catch(error => {
-      console.log(error);
+      headlinesContainer.innerText = 'Something has gone wrong. Please try later....';
+      hideLoader()
     });
 };
 
@@ -89,11 +89,12 @@ const getCategory = e => {
         })
         .join("");
 
-      loader.style.display = "none";
+      hideLoader()
       headlinesContainer.innerHTML = categoryCard;
     })
     .catch(error => {
-      console.log(error);
+      headlinesContainer.innerHTML = '<div>Something has gone wrong. Please try later....</div>';
+      hideLoader()
     });
 };
 
@@ -117,23 +118,33 @@ const retriveSearch = e => {
   fetch(searchUrl)
     .then(res => res.json())
     .then(data => {
-      let internationalNumberFormat = new Intl.NumberFormat("en-GB");
+      // let internationalNumberFormat = new Intl.NumberFormat("en-GB");
+
       let searchList = data.articles
         .map(article => {
           return `
-      <div onclick="window.open('${article.url
+        <div onclick="window.open('${article.url
             }', '_blank')" class="search-list-item" >
-          <img src="${article.urlToImage || "./no-image.jpeg"
+            <img src="${article.urlToImage || "./no-image.jpeg"
             }" alt="article-img" loading="lazy"><cite style=>${article.source.name
             }-${new Date(article.publishedAt).getFullYear()}-${new Date(article.publishedAt).getMonth() + 1
             }-${new Date(article.publishedAt).getDate()}</cite>
-          <h2>${article.title}</h2>  
-      </div>`;
+            <h2>${article.title}</h2>  
+        </div>`;
         })
         .join("");
 
-      loader.style.display = "none";
-      newsListContainer.innerHTML = searchList;
+      hideLoader()
+      data.articles.length
+        ?
+        newsListContainer.innerHTML = searchList
+        : newsListContainer.innerHTML = '<div>Unfortunately no result for this search</div>', searchInput.value = '';
+
+
+    }).catch(error => {
+      newsListContainer.innerHTML = 'Something has gone wrong. Please try later....';
+      hideLoader()
+      searchInput.value = '';
     });
 };
 
@@ -161,4 +172,7 @@ const resetPage = () => {
   loader.style.display = "block";
 };
 
+const hideLoader = () => {
+  loader.style.display = "none";
+}
 
