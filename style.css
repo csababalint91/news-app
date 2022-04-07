@@ -106,6 +106,7 @@ button[type="submit"]:hover {
   max-width: 450px;
   overflow: hidden;
   background-color: whitesmoke;
+  border: 1px double rgb(144, 144, 144);
 }
 
 .img-wrapper {
