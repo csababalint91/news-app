@@ -10,6 +10,7 @@ const loader = document.querySelector(".loader");
 
 window.onload = function getHeadlines() {
   resetPage();
+  categories.value = "Select Category";
 
   let topHeadlinesUrl = `${newsAppApiBaseUrl}getAPIResponse/topHeadlines`;
 
@@ -99,15 +100,13 @@ const getCategory = e => {
 const categories = document.getElementById("categories");
 categories.addEventListener("change", getCategory);
 
-// Get Search
-
+// Search
 const searchFrom = document.getElementById("searchFrom");
 const newsListContainer = document.getElementById("newsListContainer");
 
 const retriveSearch = e => {
   resetPage();
 
-  // Set drop down value back to disabled
   categories.value = "Select Category";
 
   e.preventDefault();
